@@ -12,13 +12,12 @@ class HousePricePredictor:
         self.data = pd.read_csv(self.data_path)
 
     def preprocess_data(self):
-        X = self.data[['feature1', 'feature2']]  # Replace with your features
-        y = self.data['price']  # Replace with your target variable
+        X = self.data[['feature1', 'feature2']]  
+        y = self.data['price']  
 
-        # Split data into training and testing sets
+        
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # Scale features
         scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(X_train)
         X_test_scaled = scaler.transform(X_test)
@@ -30,7 +29,7 @@ class HousePricePredictor:
         self.model.fit(X_train, y_train)
 
     def predict_price(self, features):
-        # Ensure features are in the correct format (e.g., list or NumPy array)
+        
         features = np.array(features).reshape(1, -1)
 
         scaled_features = self.scaler.transform(features)
